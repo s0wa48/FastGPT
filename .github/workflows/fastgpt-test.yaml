@@ -20,7 +20,7 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
       - uses: pnpm/action-setup@v4
         with:
-          version: 10
+          version: 9.15.9
       - name: 'Install Deps'
         run: pnpm install
       - name: 'Test'
@@ -30,3 +30,6 @@ jobs:
         # Only works if you set `reportOnFailure: true` in your vite config as specified above
         if: always()
         uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          json-summary-path: './coverage/coverage-summary.json'
+          json-final-path: './coverage/coverage-final.json'
